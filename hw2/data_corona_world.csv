@@ -1,0 +1,109 @@
+Country,Date of reporting,Age group,Confirmed cases,Confirmed fatalities
+Argentina,28-May-20,0-9,1002,0
+Argentina,28-May-20, 10-19,1080,1
+Argentina,28-May-20,20-29,2813,1
+Argentina,28-May-20,30-39,3142,9
+Argentina,28-May-20,40-49,2508,24
+Argentina,28-May-20,50-59,1812,54
+Argentina,28-May-20,60-69,1005,101
+Argentina,28-May-20,70-79,651,123
+Argentina,28-May-20,80+,662,194
+China,17-Feb-20,0-9,416,0
+China,17-Feb-20, 10-19,549,1
+China,17-Feb-20,20-29,3619,7
+China,17-Feb-20,30-39,7600,18
+China,17-Feb-20,40-49,8571,38
+China,17-Feb-20,50-59,10008,130
+China,17-Feb-20,60-69,8583,309
+China,17-Feb-20,70-79,3918,312
+China,17-Feb-20,80+,1408,208
+Colombia,28-May-20,0-9,1105,5
+Colombia,28-May-20, 10-19,1950,1
+Colombia,28-May-20,20-29,5614,13
+Colombia,28-May-20,30-39,5615,24
+Colombia,28-May-20,40-49,4033,61
+Colombia,28-May-20,50-59,3286,121
+Colombia,28-May-20,60-69,1961,192
+Colombia,28-May-20,70-79,1117,214
+Colombia,28-May-20,80+,685,191
+Diam. Princ.,26-Mar-20,0-9,1,0
+Diam. Princ.,26-Mar-20, 10-19,5,0
+Diam. Princ.,26-Mar-20,20-29,28,0
+Diam. Princ.,26-Mar-20,30-39,34,0
+Diam. Princ.,26-Mar-20,40-49,27,0
+Diam. Princ.,26-Mar-20,50-59,59,0
+Diam. Princ.,26-Mar-20,60-69,177,0
+Diam. Princ.,26-Mar-20,70-79,234,3
+Diam. Princ.,26-Mar-20,80+,54,4
+Italy,09-Mar-20,0-9,43,0
+Italy,09-Mar-20, 10-19,85,0
+Italy,09-Mar-20,20-29,296,0
+Italy,09-Mar-20,30-39,470,0
+Italy,09-Mar-20,40-49,891,1
+Italy,09-Mar-20,50-59,1453,3
+Italy,09-Mar-20,60-69,1471,37
+Italy,09-Mar-20,70-79,1785,114
+Italy,09-Mar-20,80+,1532,202
+Netherlands,28-May-20,0-9,128,0
+Netherlands,28-May-20, 10-19,587,1
+Netherlands,28-May-20,20-29,4336,3
+Netherlands,28-May-20,30-39,4093,10
+Netherlands,28-May-20,40-49,5269,28
+Netherlands,28-May-20,50-59,8437,142
+Netherlands,28-May-20,60-69,5949,484
+Netherlands,28-May-20,70-79,6229,1596
+Netherlands,28-May-20,80+,10919,3639
+Portugal,28-May-20,0-9,626,0
+Portugal,28-May-20, 10-19,1052,0
+Portugal,28-May-20,20-29,4114,1
+Portugal,28-May-20,30-39,4736,1
+Portugal,28-May-20,40-49,5315,15
+Portugal,28-May-20,50-59,5253,42
+Portugal,28-May-20,60-69,3484,122
+Portugal,28-May-20,70-79,2537,269
+Portugal,28-May-20,80+,4479,919
+South Africa,28-May-20,0-9,755,2
+South Africa,28-May-20, 10-19,1147,1
+South Africa,28-May-20,20-29,5319,4
+South Africa,28-May-20,30-39,7720,33
+South Africa,28-May-20,40-49,5754,61
+South Africa,28-May-20,50-59,3753,144
+South Africa,28-May-20,60-69,1663,153
+South Africa,28-May-20,70-79,754,113
+South Africa,28-May-20,80+,415,66
+Spain,29-May-20,0-9,1123,3
+Spain,29-May-20, 10-19,2068,5
+Spain,29-May-20,20-29,15272,24
+Spain,29-May-20,30-39,24902,65
+Spain,29-May-20,40-49,37970,218
+Spain,29-May-20,50-59,45750,663
+Spain,29-May-20,60-69,36355,1825
+Spain,29-May-20,70-79,34294,4896
+Spain,29-May-20,80+,61026,12886
+Sweden,18-May-20,0-9,168,1
+Sweden,18-May-20, 10-19,401,0
+Sweden,18-May-20,20-29,3104,8
+Sweden,18-May-20,30-39,4051,12
+Sweden,18-May-20,40-49,4962,39
+Sweden,18-May-20,50-59,6190,129
+Sweden,18-May-20,60-69,4186,294
+Sweden,18-May-20,70-79,3888,909
+Sweden,18-May-20,80+,7482,2733
+Switzerland,26-May-20,0-9,162,0
+Switzerland,26-May-20, 10-19,877,0
+Switzerland,26-May-20,20-29,3844,0
+Switzerland,26-May-20,30-39,4136,5
+Switzerland,26-May-20,40-49,4809,4
+Switzerland,26-May-20,50-59,6232,37
+Switzerland,26-May-20,60-69,3671,121
+Switzerland,26-May-20,70-79,2896,335
+Switzerland,26-May-20,80+,4080,1146
+South Korea,25-May-20,0-9,149,0
+South Korea,25-May-20, 10-19,636,0
+South Korea,25-May-20,20-29,3117,0
+South Korea,25-May-20,30-39,1235,2
+South Korea,25-May-20,40-49,1481,3
+South Korea,25-May-20,50-59,1987,15
+South Korea,25-May-20,60-69,1375,39
+South Korea,25-May-20,70-79,719,78
+South Korea,25-May-20,80+,491,129

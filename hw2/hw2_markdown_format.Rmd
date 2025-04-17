@@ -1,0 +1,292 @@
+---
+title: "HW_2"
+output:
+  pdf_document: default
+  html_document: default
+date: "2025-04-14"
+---
+# Question 2
+
+### 1
+
+```{r}
+corona_df <- read.csv("data_corona_world.csv")
+head(corona_df)
+```
+
+### 2
+
+```{r}
+filterd_df <- subset(corona_df, Country %in% c("Italy", "China"))
+head(filterd_df)
+```
+
+### 3
+
+
+```{r}
+str(filterd_df)
+```
+
+### 4
+
+```{r}
+china_data <- subset(filterd_df, Country == 'China',
+                     select = c(Confirmed.cases, Confirmed.fatalities))
+china_data <- colSums(china_data)
+china_survivors <- china_data["Confirmed.cases"] - china_data["Confirmed.fatalities"]
+
+italy_data <- subset(filterd_df, Country == 'Italy',
+                     select = c(Confirmed.cases, Confirmed.fatalities))
+italy_data <- colSums(italy_data)
+italy_survivors <- italy_data["Confirmed.cases"] - italy_data["Confirmed.fatalities"]
+
+contingency_table <- rbind(
+  c(china_survivors, china_data["Confirmed.fatalities"]),
+  c(italy_survivors, italy_data["Confirmed.fatalities"])
+)
+
+rownames(contingency_table) <- c("China","Italy")
+colnames(contingency_table) <- c("Survivor","Death")
+
+print(contingency_table)
+
+mosaicplot(contingency_table, color = TRUE,
+           main = "Contingency Table: China vs. Italy")
+```
+
+### 5
+
+```{r}
+china_dp <- (contingency_table["China", "Death"] / sum(contingency_table["China", ])) * 100
+print(china_dp)
+
+italy_dp <- (contingency_table["Italy", "Death"] / sum(contingency_table["Italy", ])) * 100
+print(italy_dp)
+```
+
+It seems that China handled the situation better, since the death rate was lower compared to Italy.
+
+### 6
+
+```{r}
+death_rate_df <- data.frame(
+  Country = c("China", "Italy"),
+  DeathRate = c(china_dp, italy_dp)
+)
+
+library(lattice)
+barchart(DeathRate ~ Country, 
+         data = death_rate_df, 
+         main = "Death Rate by Country", 
+         xlab = "Country", 
+         ylab = "Death Rate (%)",
+         ylim = c(0,5)
+         )
+```
+
+Based on the graph, being in Italy appears to be more risky.
+
+```{r}
+df_age_china <- subset(filterd_df, Country == 'China',
+                 select = c(Age.group, Confirmed.cases, Confirmed.fatalities))
+
+df_age_china$DeathRatio <- (df_age_china$Confirmed.fatalities / (df_age_china$Confirmed.cases + df_age_china$Confirmed.fatalities)) * 100
+df_age_china$Country <- "China"
+
+
+df_age_italy <- subset(filterd_df, Country == 'Italy',
+                       select = c(Age.group, Confirmed.cases, Confirmed.fatalities))
+
+df_age_italy$DeathRatio <- (df_age_italy$Confirmed.fatalities / (df_age_italy$Confirmed.cases + df_age_italy$Confirmed.fatalities)) * 100
+df_age_italy$Country <- "Italy"
+
+
+death_rate_age <- rbind(df_age_china, df_age_italy)
+
+death_rate_age$Age.group <- factor(
+  death_rate_age$Age.group,
+  levels = c("0-9", " 10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80+"),
+  ordered = TRUE
+)
+
+
+barchart(DeathRatio ~ Age.group,
+         group = Country,
+         data = death_rate_age,
+         auto.key = list(space = "right"),
+         main = "Death Rate by Country & Age",
+         xlab = "Age Group",
+         ylab = "Death Rate (%)"
+         )
+```
+
+This is an example of Simpson's paradox, because when we look at each age group separately, China's death rate was higher than Italy's.
+
+# Question 3
+
+```{r}
+df_titanic <- read.csv("titanic.csv")
+head(df_titanic)
+```
+
+### a
+
+```{r}
+logic_vec <- !colnames(df_titanic) %in% c("Cabin", "Ticket")
+
+df_titanic <- df_titanic[,logic_vec]
+head(df_titanic)
+```
+
+### b
+
+```{r}
+completed_rows <- complete.cases(df_titanic)
+
+df_titanic <- df_titanic[completed_rows, ]
+head(df_titanic)
+```
+
+### c
+
+```{r}
+fare_summary <- aggregate(Fare ~ Pclass, data = df_titanic, FUN = summary)
+print(fare_summary)
+```
+
+According to the summary, the median and mean for each class show that Class 1 is the most expensive.
+
+```{r}
+boxplot(Fare ~ Pclass, data = df_titanic,
+        main = "Fare by Passenger Class",
+        xlab = "Pclass", ylab = "Fare",
+        col = c("lightblue", "lightgreen", "salmon"),
+        ylim = c(0,600))
+```
+
+We should use a transformation, since there are outliers that make the graph harder to read. We chose a log transformation.
+
+```{r}
+df_titanic$logFare <- log(df_titanic$Fare + 1)
+
+boxplot(logFare ~ Pclass, data = df_titanic,
+        main = "Fare by Passenger Class",
+        xlab = "Pclass", ylab = "Fare (log)",
+        col = c("lightblue", "lightgreen", "salmon"),
+        ylim = c(0,10)
+        )
+```
+
+
+
+```{r}
+variance_by_class <- aggregate(Fare ~ Pclass, data = df_titanic, FUN = var)
+print(variance_by_class)
+```
+
+Class 1 shows higher fare variance, meaning there was a wider range in ticket prices.
+
+### d
+
+```{r}
+table_survival <- table(df_titanic$Survived, df_titanic$Pclass)
+rownames(table_survival) <- c("Died", "Survived")
+colnames(table_survival) <- c("Class 1", "Class 2", "Class 3")
+mosaicplot(table_survival,
+           color = TRUE,
+           main = "Survival by Passenger Class"
+           )
+```
+
+### d.1
+
+The marginal totals are calculated as
+
+```{r}
+colSums(table_survival)
+rowSums(table_survival)
+```
+
+### d.2
+
+Expected frequency
+
+```{r}
+row_total <- c(424, 290) # Died, Survived
+col_total <- c(186, 173, 355) # Class 1,2,3
+total <- sum(row_total)
+
+expected <- matrix(0, nrow = 2, ncol = 3)
+
+for (i in 1:2) {
+  for (j in 1:3) {
+    expected[i,j] <- (row_total[i] * col_total[j]) / total
+  }
+}
+
+rownames(expected) <- c("Died", "Survived")
+colnames(expected) <- c("Class 1", "Class 2", "Class 3")
+
+print(expected)
+```
+
+### d.3
+
+The X² statistic is
+
+```{r}
+x <- 0
+for (i in 1:2) {
+  for (j in 1:3) {
+    x <- x + ((table_survival[i,j] - expected[i,j]) ^ 2) / expected[i,j]
+  }
+}
+
+print(x)
+```
+
+### d.4
+
+```{r}
+
+```
+
+### e
+
+```{r}
+survival_ratio <- table_survival[2, ] / (table_survival[1, ] + table_survival[2, ])
+print(survival_ratio)
+```
+
+The proportions clearly show that Class 1 had the highest chance of survival
+
+### f
+
+```{r}
+boxplot(Age ~ Survived,
+        names = c("Died", "Survived"),
+        data = df_titanic,
+        ylab = "Age",
+        xlab = "Survival Status",
+        col = c("salmon", "lightgreen"),
+        main = "Age Distribution by Survival"
+        )
+```
+
+Based on the graph, there doesn’t seem to be a connection between survival and age, since the medians look very similar and the Q1 and Q3 are at about the same level.
+
+```{r}
+boxplot(Age ~ Survived + Pclass, 
+        data = df_titanic,
+        names = c("Died-1st", "Survived-1st", 
+                  "Died-2nd", "Survived-2nd", 
+                  "Died-3rd", "Survived-3rd"),
+        col = c("salmon", "lightgreen"),
+        xlab = "Survival Status by Class",
+        ylab = "Age",
+        main = "Age Distribution by Survival and Class"
+        )
+```
+
+However, when separating by class, it became apparent that younger passengers were more likely to survive within each class.
