@@ -4,13 +4,8 @@ This repository contains homework and practice exercises for the course "מבו�
 
 ## Structure
 
-- `hw1/`: Homework 1 – Vectors, sequences, and basic R operations
-- `hw2/`: Homework 2 – Data manipulation, summary statistics, and visualization using R Markdown  
-  Includes:
-  - `hw2_markdown_format.Rmd`: Full analysis written in R Markdown  
-  - `hw2_markdown_format.pdf`: Rendered PDF report (no need to run code)  
-  - `corona.R`, `titanic.R`: R scripts used in the analysis  
-  - `data_corona_world.csv`, `titanic.csv`: Input datasets
+- `hw1/`: Homework 1 – Barplot, summary statistics, and simple custom R functions
+- `hw2/`: Homework 2 – Titanic & COVID-19 analysis using R Markdown, with data and code
 
 ## How to use
 
