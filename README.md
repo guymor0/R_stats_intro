@@ -6,6 +6,7 @@ This repository contains homework and practice exercises for the course "מבו�
 
 - `hw1/`: Homework 1 – Barplot, summary statistics, and simple custom R functions
 - `hw2/`: Homework 2 – Titanic & COVID-19 analysis using R Markdown, with data and code
+- `hw3/`: Homework 3 – Analysis of the Animals dataset from the MASS package, including transformations, regression modeling, and residual analysis
 
 ## How to use
 
